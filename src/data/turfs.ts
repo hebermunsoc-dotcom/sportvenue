@@ -5,7 +5,7 @@ export const turfs = [
   location: "Chennai",
   price: "₹1200/hr",
   rating: 4.8,
-  image: "/images/turfs/football-turf.jpg",
+  image: "/images/public/turfs/football-turf.jpg",
   tags: ["Football", "5v5", "Floodlights"],
   description:
     "Premium football turf with floodlights, changing rooms and ample parking."
@@ -16,7 +16,7 @@ export const turfs = [
     location: "Coimbatore",
     price: "₹1500/hr",
     rating: 4.7,
-    image: "/images/turfs/cricket-ground.jpg",
+    image: "/images/public/turfs/cricket-ground.jpg",
     tags: ["Cricket", "Parking", "Night Matches"],
     description:
   "Professional cricket ground suitable for tournaments and practice sessions."
@@ -27,7 +27,7 @@ export const turfs = [
     location: "Bangalore",
     price: "₹800/hr",
     rating: 4.9,
-    image: "/images/turfs/badminton-court.jpg",
+    image: "/images/public/turfs/badminton-court.jpg",
     tags: ["Badminton", "AC Court", "Indoor"],
     description:
   "Indoor air-conditioned badminton courts with modern facilities."
