@@ -8,7 +8,7 @@ export default function Logo() {
       </div>
 
       <span className="text-xl font-bold text-slate-900">
-        SportVenue
+        TurfSlots
       </span>
     </div>
   );
