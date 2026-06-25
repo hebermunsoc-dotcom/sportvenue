@@ -5,16 +5,12 @@ import Link from "next/link";
 import { getUserRole } from "@/lib/profile";
 
 export default function RoleNav() {
-    console.log("RoleNav rendered");
   const [role, setRole] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadRole() {
       const userRole = await getUserRole();
-
-console.log("USER ROLE:", userRole);
-
-setRole(userRole);
+      setRole(userRole);
     }
 
     loadRole();
@@ -22,28 +18,11 @@ setRole(userRole);
 
   return (
     <>
-      <span className="text-red-500">
-      ROLE TEST
-    </span>
       <Link
         href="/explore"
         className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
       >
         Explore
-      </Link>
-
-      <Link
-        href="/dashboard"
-        className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
-      >
-        Dashboard
-      </Link>
-
-      <Link
-        href="/my-bookings"
-        className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
-      >
-        My Bookings
       </Link>
 
       <Link
@@ -53,13 +32,38 @@ setRole(userRole);
         Leagues
       </Link>
 
-      {role === "owner" && (
-        <Link
-          href="/owner"
-          className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
-        >
-          Owner Portal
-        </Link>
+      {role === "owner" ? (
+        <>
+          <Link
+            href="/owner-dashboard"
+            className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+          >
+            Dashboard
+          </Link>
+
+          <Link
+            href="/owner"
+            className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+          >
+            Owner Portal
+          </Link>
+        </>
+      ) : (
+        <>
+          <Link
+            href="/dashboard"
+            className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+          >
+            Dashboard
+          </Link>
+
+          <Link
+            href="/my-bookings"
+            className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+          >
+            My Bookings
+          </Link>
+        </>
       )}
 
       <Link
