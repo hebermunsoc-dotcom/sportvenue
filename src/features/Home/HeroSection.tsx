@@ -18,7 +18,7 @@ export default function HeroSection() {
               Discover and Book Sports Venues Near You
             </h1>
 
-            <p className="mb-8 text-lg text-slate-600">
+            <p className="mb-8 text-lg text-slate-700">
               Explore football turfs, cricket grounds, badminton courts,
               tennis arenas and more — all in one place.
             </p>
@@ -30,7 +30,7 @@ export default function HeroSection() {
                 </Button>
               </Link>
 
-              <Link href="/owner">
+              <Link href="/signup">
                 <Button variant="outline">
                   List Your Venue
                 </Button>
