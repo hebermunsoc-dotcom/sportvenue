@@ -8,7 +8,7 @@ export default function CallToActionSection() {
       <Container>
         <div className="rounded-3xl bg-emerald-600 px-8 py-16 text-center text-white md:px-16">
           <h2 className="mb-4 text-4xl font-bold">
-            Own a Sports Venue?
+            THIS CTA IS CHANGED
           </h2>
 
           <p className="mx-auto mb-8 max-w-2xl text-emerald-50">
