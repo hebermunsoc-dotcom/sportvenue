@@ -1,6 +1,8 @@
 "use client";
 
 import { supabase } from "@/lib/supabase";
+import { getUserRole } from "@/lib/profile";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import AuthCard from "@/components/auth/AuthCard";
@@ -8,46 +10,57 @@ import AuthInput from "@/components/auth/AuthInput";
 import Button from "@/components/ui/Button";
 
 export default function LoginPage() {
-    const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-async function handleLogin() {
-  const { error } =
-    await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+  const router = useRouter();
 
-  if (error) {
-    alert(error.message);
-    return;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleLogin() {
+    const { error } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    const role = await getUserRole();
+
+    if (role === "owner") {
+      router.push("/owner-dashboard");
+      return;
+    }
+
+    router.push("/dashboard");
   }
 
-  alert("Login successful!");
-}
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-50">
       <AuthCard title="Login">
         <div className="space-y-4">
           <AuthInput
-  type="email"
-  placeholder="Email"
-  value={email}
-  onChange={setEmail}
-/>
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={setEmail}
+          />
 
-<AuthInput
-  type="password"
-  placeholder="Password"
-  value={password}
-  onChange={setPassword}
-/>  
+          <AuthInput
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={setPassword}
+          />
 
-  <Button
-  className="w-full"
-  onClick={handleLogin}
->
-  Login
-</Button>
+          <Button
+            className="w-full"
+            onClick={handleLogin}
+          >
+            Login
+          </Button>
         </div>
 
         <p className="mt-4 text-center text-sm text-slate-600">
