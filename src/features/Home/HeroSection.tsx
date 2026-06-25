@@ -11,7 +11,7 @@ export default function HeroSection() {
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <div>
             <span className="mb-4 inline-block rounded-full bg-emerald-100 px-3 py-1 text-sm font-medium text-emerald-700">
-              TurfSlots MVP
+              TEST HERO CHANGED
             </span>
 
             <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 md:text-6xl">
