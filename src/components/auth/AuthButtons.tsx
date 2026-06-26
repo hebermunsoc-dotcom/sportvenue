@@ -1,35 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
-import { getCurrentUser, logout } from "@/lib/auth";
+import { logout } from "@/lib/auth";
+import { useUser } from "@/hooks/useUser";
 
 export default function AuthButtons() {
-  const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    async function loadUser() {
-      const user = await getCurrentUser();
-
-      if (user) {
-        setEmail(user.email || "");
-      }
-    }
-
-    loadUser();
-  }, []);
+  const { user, loading } = useUser();
 
   async function handleLogout() {
     await logout();
     window.location.reload();
   }
 
-  if (email) {
+  if (loading) return null;
+
+  if (user) {
     return (
       <div className="flex items-center gap-3">
-        <span className="text-sm text-slate-600">
-          {email}
+        <span className="text-sm text-slate-700">
+          {user.email}
         </span>
 
         <Button
