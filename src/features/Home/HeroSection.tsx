@@ -1,10 +1,15 @@
+"use client";
+
 import Link from "next/link";
-import StatItem from "@/components/ui/StatItem";
-import VenuePreviewCard from "@/components/ui/VenuePreviewCard";
 import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
+import StatItem from "@/components/ui/StatItem";
+import VenuePreviewCard from "@/components/ui/VenuePreviewCard";
+import { useUser } from "@/hooks/useUser";
 
 export default function HeroSection() {
+  const { user, role, loading } = useUser();
+
   return (
     <Container>
       <section className="py-24">
@@ -23,19 +28,37 @@ export default function HeroSection() {
               tennis arenas and more — all in one place.
             </p>
 
-            <div className="mb-12 flex flex-wrap gap-4">
-              <Link href="/explore">
-                <Button>
-                  Explore Venues
-                </Button>
-              </Link>
+            {!loading && (
+              <div className="mb-12 flex flex-wrap gap-4">
 
-              <Link href="/signup">
-                <Button variant="outline">
-                  List Your Venue
-                </Button>
-              </Link>
-            </div>
+                {!user && (
+                  <>
+                    <Link href="/explore">
+                      <Button>Explore Venues</Button>
+                    </Link>
+
+                    <Link href="/signup">
+                      <Button variant="outline">
+                        List Your Venue
+                      </Button>
+                    </Link>
+                  </>
+                )}
+
+                {user && role === "customer" && (
+                  <Link href="/explore">
+                    <Button>Explore Venues</Button>
+                  </Link>
+                )}
+
+                {user && role === "owner" && (
+                  <Link href="/owner">
+                    <Button>Owner Portal</Button>
+                  </Link>
+                )}
+
+              </div>
+            )}
 
             <div className="flex gap-10">
               <StatItem value="500+" label="Venues" />
