@@ -31,10 +31,13 @@ export default function HeroSection() {
             {!loading && (
               <div className="mb-12 flex flex-wrap gap-4">
 
+                {/* Public */}
                 {!user && (
                   <>
                     <Link href="/explore">
-                      <Button>Explore Venues</Button>
+                      <Button>
+                        Explore Venues
+                      </Button>
                     </Link>
 
                     <Link href="/signup">
@@ -45,15 +48,21 @@ export default function HeroSection() {
                   </>
                 )}
 
+                {/* Customer */}
                 {user && role === "customer" && (
                   <Link href="/explore">
-                    <Button>Explore Venues</Button>
+                    <Button>
+                      Explore Venues
+                    </Button>
                   </Link>
                 )}
 
+                {/* Owner */}
                 {user && role === "owner" && (
                   <Link href="/owner">
-                    <Button>Owner Portal</Button>
+                    <Button>
+                      Manage Venues
+                    </Button>
                   </Link>
                 )}
 

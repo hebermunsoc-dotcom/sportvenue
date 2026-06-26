@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Button from "@/components/ui/Button";
-import { getCurrentUser } from "@/lib/auth";
+import { useUser } from "@/hooks/useUser";
 
 interface ProtectedBookButtonProps {
   venueId: string | number;
@@ -13,11 +13,20 @@ export default function ProtectedBookButton({
 }: ProtectedBookButtonProps) {
   const router = useRouter();
 
-  async function handleBook() {
-    const user = await getCurrentUser();
+  const { user, role, loading } = useUser();
+
+  function handleBook() {
+    if (loading) return;
 
     if (!user) {
       router.push("/login");
+      return;
+    }
+
+    if (role === "owner") {
+      alert(
+        "Venue owners cannot make bookings. Please login with a customer account to book venues."
+      );
       return;
     }
 
