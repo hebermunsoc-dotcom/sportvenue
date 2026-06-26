@@ -9,9 +9,13 @@ export function useUser() {
   const [loading, setLoading] = useState(true);
 
   async function loadUser() {
+    setLoading(true);
+
     const {
       data: { user },
     } = await supabase.auth.getUser();
+
+    console.log("AUTH USER:", user);
 
     setUser(user);
 
@@ -21,13 +25,21 @@ export function useUser() {
       return;
     }
 
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("profiles")
       .select("role")
       .eq("email", user.email)
       .single();
 
-    setRole(data?.role ?? null);
+    console.log("PROFILE:", data);
+    console.log("PROFILE ERROR:", error);
+
+    if (data) {
+      setRole(data.role);
+    } else {
+      setRole(null);
+    }
+
     setLoading(false);
   }
 
