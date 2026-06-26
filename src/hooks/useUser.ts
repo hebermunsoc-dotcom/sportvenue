@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 export function useUser() {
+    console.log("useUser hook rendered");
   const [user, setUser] = useState<any>(null);
   const [role, setRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   async function loadUser() {
+    console.log("loadUser called");
     setLoading(true);
 
     const {
