@@ -9,6 +9,8 @@ import { useUser } from "@/hooks/useUser";
 
 export default function HeroSection() {
   const { user, role, loading } = useUser();
+  console.log("USER:", user);
+console.log("ROLE:", role);
 
   return (
     <Container>
